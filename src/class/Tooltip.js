@@ -8,14 +8,13 @@ class Tooltip {
     this.el.addEventListener('click', this.btnClick)
   }
 
-  btnClick() {
+  btnClick(e) {
     this.show = !this.show
-    console.log(this.el.getBoundingClientRect())
 
     let tooltip = this.createTooltip()
 
     this.show && this.el.parentElement.insertBefore(tooltip, this.el) && this.positionTooltip(tooltip)
-    !this.show && this.el.parentElement.querySelector('.tooltip').remove()
+    !this.show && e.target.previousElementSibling.remove()
   }
 
   createTooltip () {
